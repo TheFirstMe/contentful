@@ -3,6 +3,7 @@ const contentful = require("contentful-management")
 exports.handler = function (event, context, callback) {
     async function main() {
         // Post ID from get request
+        console.log("Hello")
         const spaceId = process.env.CONTENTFUL_SPACE_ID
         const acces = process.env.CONTENTFUL_ACCESS_TOKEN
         const ID = await event.queryStringParameters.ID
@@ -19,6 +20,7 @@ exports.handler = function (event, context, callback) {
             .then(environment => environment.getEntry(ID))
             .then(entry => {
                 // If no comments exist
+                console.log("Inside client")
                 if (entry.fields.comments === undefined) {
                     // Create the JSON needed to store comments
                     entry.fields.comments = {
@@ -30,12 +32,14 @@ exports.handler = function (event, context, callback) {
                     return entry.update()
                 } else {
                     // Grab the comments
+                    console.log("Grabbing comments")
                     entry.fields.comments["en-US"].comments.forEach(comment => {
                         postComments.push(comment)
                     })
                 }
             }).then(() => {
                 // Callback with comments to update state
+                console.log(postComments)
                 callback(null, {
                     statusCode: 200,
                     body: JSON.stringify({
