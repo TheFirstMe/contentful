@@ -7,6 +7,8 @@ import Layout from '../components/layout'
 
 import heroStyles from '../components/hero.module.css'
 
+const axios = require('axios');
+
 const comments = props => {
   const order = props.order === true ? "Oldest First" : "Most Recent"
   return (
