@@ -54,6 +54,7 @@ const Comments = props => {
 
 class BlogPostTemplate extends React.Component {
   constructor(props) {
+    super(props)
     this.state = {
       comments: [],
     }
