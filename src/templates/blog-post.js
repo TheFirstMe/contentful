@@ -161,6 +161,7 @@ export const pageQuery = graphql`
           html
         }
       }
+      contentful_id
     }
   }
 `
