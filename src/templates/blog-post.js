@@ -115,9 +115,9 @@ class BlogPostTemplate extends React.Component {
               }}
             />
             <div>
-              {console.log(this.props.data.contentfulBlogPost.enableComments)}
+              {console.log(post.enableComments)}
               { 
-                this.props.data.contentfulBlogPost.enableComments && (
+                post.enableComments && (
                   <Comments
                     comments={this.state.comments}
                     sortComments={this.sortComments}
