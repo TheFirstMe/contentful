@@ -53,6 +53,11 @@ const Comments = props => {
 }
 
 class BlogPostTemplate extends React.Component {
+  constructor(props) {
+    this.state = {
+      comments: [],
+    }
+  }
   componentDidMount() {
     const ID = this.props.data.contentfulBlogPost.contentful_id
     axios.get("/.netlify/functions/test", {
