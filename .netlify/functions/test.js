@@ -5,7 +5,7 @@ exports.handler = function (event, context, callback) {
         // Post ID from get request
         console.log("Hello")
         const spaceId = process.env.CONTENTFUL_SPACE_ID
-        const acces = process.env.CONTENTFUL_ACCESS_TOKEN
+        const acces = process.env.CONTENTFUL_MANANGEMENT_ACCESS_TOKEN
         console.log(acces)
         const ID = await event.queryStringParameters.ID
         // Start with empty array
