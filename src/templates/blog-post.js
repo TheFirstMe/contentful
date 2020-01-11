@@ -6,6 +6,7 @@ import Img from 'gatsby-image'
 import Layout from '../components/layout'
 
 import heroStyles from '../components/hero.module.css'
+import styles from "./blog-post.module.css"
 
 const axios = require('axios');
 
@@ -13,34 +14,40 @@ const Comments = props => {
   const order = props.order === true ? "Oldest First" : "Most Recent"
   return (
     <>
-      <div>
+      <div className={styles.details}>
         {props.comments && <span>{props.comments.length} Comments</span>}
         <button onClick={props.sortComments}>{order}</button>
       </div>
       {props.comments &&
         props.comments.map(comment => (
-          <div key={comment.id}>
-            <div >
-              <div >
-                <span >
+          <div className={styles.commentContainer} key={comment.id}>
+            <div className={styles.comment}>
+              <div className={styles.commentDetails}>
+                <span className={styles.commentDetailsName}>
                   <a href={comment.handle}>{comment.name}</a>
                 </span>
-                {/* <span className={styles.commentDetailsDate}>
-                  {formatDate(comment.timestamp)}
-                </span> */}
+                <span className={styles.commentDetailsDate}>
+                  {comment.timestamp}
+                </span>
               </div>
               <p>{comment.message}</p>
+              <button
+                className={styles.commentReplyBtn}
+                onClick={() => props.reply(comment.id, comment.name)}
+              >
+                Reply
+              </button>
             </div>
-            <div >
+            <div className={styles.replies}>
               {comment.replies.map((comment, index) => (
-                <div key={index}>
-                  <div>
-                    <span>
+                <div className={styles.commentReply} key={index}>
+                  <div className={styles.commentDetails}>
+                    <span lassName={styles.commentDetailsName}>
                       <a href={comment.handle}>{comment.name}</a>
                     </span>
-                    {/* <span className={styles.commentDetailsDate}>
-                      {formatDate(comment.timestamp)}
-                    </span> */}
+                    <span className={styles.commentDetailsDate}>
+                      {comment.timestamp}
+                    </span>
                   </div>
                   <p>{comment.message}</p>
                 </div>
@@ -73,6 +80,7 @@ class BlogPostTemplate extends React.Component {
       console.log(error)
     })
   }
+
   sortComments = () => {
     const comments = this.state.comments
     if (!this.state.sorting) {
@@ -89,6 +97,25 @@ class BlogPostTemplate extends React.Component {
       })
     }
   }
+
+  reply = (id, name) => {
+    window.scrollTo(50, document.body.scrollHeight)
+    this.setState({
+      reply: true,
+      replyName: `Replying to ${name} `,
+      replyID: id
+    })
+  }
+
+  canceReply = evt => {
+    evt.preventDefault()
+    this.setState({
+      reply: false,
+      replyName: ``,
+      replyID: null
+    })
+  }
+
   handleChange = evt => {
     evt.persist()
     this.setState({
@@ -122,10 +149,11 @@ class BlogPostTemplate extends React.Component {
             />
             <div>
               {console.log(post.enableComments)}
-              { 
+              {
                 post.enableComments && (
                   <Comments
                     comments={this.state.comments}
+                    reply={this.reply}
                     sortComments={this.sortComments}
                     order={this.state.sorting}
                   />)
