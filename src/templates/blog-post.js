@@ -9,7 +9,7 @@ import heroStyles from '../components/hero.module.css'
 
 const axios = require('axios');
 
-const comments = props => {
+const Comments = props => {
   const order = props.order === true ? "Oldest First" : "Most Recent"
   return (
     <>
@@ -115,7 +115,8 @@ class BlogPostTemplate extends React.Component {
               }}
             />
             <div>
-              {
+              {console.log(this.data.contentfulBlogPost.enableComments)}
+              { 
                 this.props.data.contentfulBlogPost.enableComments && (
                   <Comments
                     comments={this.state.comments}
