@@ -4,13 +4,13 @@ exports.handler = function (event, context, callback) {
     async function main() {
         // Post ID from get request
         const spaceId = process.env.CONTENTFUL_SPACE_ID
-        const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN
+        const acces = process.env.CONTENTFUL_ACCESS_TOKEN
         const ID = await event.queryStringParameters.ID
         // Start with empty array
         let postComments = []
         // Connect to contentful
         const client = contentful.createClient({
-            accessToken: accessToken
+            accessToken: acces
         })
         // Get the entry based on post ID.
         await client
