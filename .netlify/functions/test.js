@@ -6,8 +6,8 @@ exports.handler = function (event, context, callback) {
         console.log("Hello")
         const spaceId = process.env.CONTENTFUL_SPACE_ID
         const acces = process.env.CONTENTFUL_MANANGEMENT_ACCESS_TOKEN
-        console.log(acces)
         const ID = await event.queryStringParameters.ID
+        console.log(ID)
         // Start with empty array
         let postComments = []
         // Connect to contentful
