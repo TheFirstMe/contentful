@@ -11,8 +11,21 @@
 
 .details {
   margin: 15px 0;
+  margin-top: 45px;
   display: flex;
   justify-content: space-between;
+}
+
+.details button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  font-family: Open Sans, sans-serif;
+  font-size: 1rem;
+  color: #2a2a2a;
+  text-decoration: underline;
 }
 
 .commentContainer {
