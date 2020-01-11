@@ -149,6 +149,7 @@ export const pageQuery = graphql`
           ...GatsbyContentfulFluid_tracedSVG
         }
       }
+      enableComments
       body {
         childMarkdownRemark {
           html
